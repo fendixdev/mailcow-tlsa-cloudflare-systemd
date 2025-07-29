@@ -1,0 +1,13 @@
+# /etc/systemd/system/mailcow-tlsa-watcher.service
+[Unit]
+Description=Watch for mailcow certificate changes and update TLSA records
+After=docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/watch-cert-changes.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
